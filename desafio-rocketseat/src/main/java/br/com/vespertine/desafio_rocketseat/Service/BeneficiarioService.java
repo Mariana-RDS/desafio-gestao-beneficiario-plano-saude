@@ -11,14 +11,19 @@ import br.com.vespertine.desafio_rocketseat.Dto.BeneficiarioDTO;
 import br.com.vespertine.desafio_rocketseat.Entity.BeneficiarioEntity;
 import br.com.vespertine.desafio_rocketseat.Mapper.BeneficiarioMapper;
 import br.com.vespertine.desafio_rocketseat.Repository.BeneficiarioRepository;
-import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class BeneficiarioService {
 
     private final BeneficiarioRepository beneficiarioRepository;
     private final BeneficiarioMapper beneficiarioMapper;
+
+    
+
+    public BeneficiarioService(BeneficiarioRepository beneficiarioRepository, BeneficiarioMapper beneficiarioMapper) {
+        this.beneficiarioRepository = beneficiarioRepository;
+        this.beneficiarioMapper = beneficiarioMapper;
+    }
 
     public List<BeneficiarioDTO> getAll(){
         try{
@@ -31,6 +36,7 @@ public class BeneficiarioService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Please Try Again");
         }
     }
+
 
     public BeneficiarioDTO getById(Long id){
         try{
@@ -75,7 +81,26 @@ public class BeneficiarioService {
         }
     }
 
-    
-    
+    public Boolean delete(Long id){
+        try {
+            Optional<BeneficiarioEntity> beneficiario = beneficiarioRepository.findById(id);
+            if(beneficiario.isPresent()){
+                beneficiarioRepository.deleteById(id);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Please Try Again");
+        }
+    }
+
+    public Boolean deleteAll(){
+        try {
+            beneficiarioRepository.deleteAll();
+            return true;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Please Try Again");
+        }
+    }
 
 }

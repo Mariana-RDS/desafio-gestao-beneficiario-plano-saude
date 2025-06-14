@@ -9,5 +9,5 @@ public record BeneficiarioDTO(
     String nome, 
     String telefone, 
     LocalDate dataNascimento, 
-    List<DocumentoDTO> Documentos
+    List<DocumentoDTO> documentos
 ) implements Serializable {}

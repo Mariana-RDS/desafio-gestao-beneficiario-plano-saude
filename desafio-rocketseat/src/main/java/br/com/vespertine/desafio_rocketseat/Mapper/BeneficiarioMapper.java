@@ -2,6 +2,7 @@ package br.com.vespertine.desafio_rocketseat.Mapper;
 
 import java.util.List;
 import org.mapstruct.*;
+
 import br.com.vespertine.desafio_rocketseat.Dto.BeneficiarioDTO;
 import br.com.vespertine.desafio_rocketseat.Entity.BeneficiarioEntity;
 

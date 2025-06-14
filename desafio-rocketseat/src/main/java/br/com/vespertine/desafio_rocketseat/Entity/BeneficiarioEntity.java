@@ -25,7 +25,7 @@ public class BeneficiarioEntity extends AuditoriaEntity{
     private String telefone;
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy="beneficiario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy="beneficiarioEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocumentoEntity> documentos = new ArrayList<>();
 
 
